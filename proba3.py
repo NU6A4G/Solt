@@ -8,18 +8,18 @@ class TicTacToe:
         self.root = root
         self.root.title("Tic Tac Toe")
 
-        # Initialize variables
+        #Változók értékének megadása
         self.current_player = "X"
         self.player_names = {"X": player1, "O": player2}
         self.board = [""] * 9
 
-        # Create labels for player names and current player
+        #Nevek meghatározása a körökhöz
         self.player_labels = [
             tk.Label(root, text=f"{player1}'s turn", font=("Helvetica", 12)),
             tk.Label(root, text=f"Current Player: {player1}", font=("Helvetica", 10)),
         ]
 
-        # Create buttons
+        #Gombok létrehozása
         self.buttons = []
         for i in range(3):
             row_buttons = []
@@ -37,11 +37,11 @@ class TicTacToe:
 
             if self.check_winner():
                 winner_name = self.player_names[self.current_player]
-                messagebox.showinfo("Tic Tac Toe", f"{winner_name} wins!")
+                messagebox.showinfo("Tic Tac Toe", f"{winner_name} győzött!")
                 self.save_winner(winner_name)
                 self.reset_game()
             elif "" not in self.board:
-                messagebox.showinfo("Tic Tac Toe", "It's a tie!")
+                messagebox.showinfo("Tic Tac Toe", "Döntetlen!")
                 self.reset_game()
             else:
                 self.current_player = "O" if self.current_player == "X" else "X"
@@ -72,19 +72,19 @@ class TicTacToe:
 
     def save_winner(self, winner_name):
         try:
-            with open("winners.txt", "a") as file:
+            with open("gyoztesek.txt", "a") as file:
                 date_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 file.write(f"{date_str} - {winner_name}\n")
         except Exception as e:
-            print(f"Error saving winner: {e}")
+            print(f"Hiba a győztes mentésében: {e}")
 
 
 def get_player_names():
     root = tk.Tk()
     root.withdraw()  # Hide the main window
 
-    player1 = simpledialog.askstring("Player 1", "Enter Player 1's name:")
-    player2 = simpledialog.askstring("Player 2", "Enter Player 2's name:")
+    player1 = simpledialog.askstring("Első játékos", "Első játékos neve:")
+    player2 = simpledialog.askstring("Második játékos", "Második játékos neve:")
 
     return player1, player2
 
