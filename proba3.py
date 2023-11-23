@@ -81,7 +81,7 @@ class TicTacToe:
 
 def get_player_names():
     root = tk.Tk()
-    root.withdraw()  # Hide the main window
+    root.withdraw()  # A fő ablak elrejtése
 
     player1 = simpledialog.askstring("Első játékos", "Első játékos neve:")
     player2 = simpledialog.askstring("Második játékos", "Második játékos neve:")
