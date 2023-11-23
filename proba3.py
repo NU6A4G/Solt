@@ -8,15 +8,15 @@ class TicTacToe:
         self.root = root
         self.root.title("Tic Tac Toe")
 
-        #Változók értékének megadása
+        #Változók értékének megadása, az első játékos mindig az Xel kezd
         self.current_player = "X"
         self.player_names = {"X": player1, "O": player2}
         self.board = [""] * 9
 
         #Nevek meghatározása a körökhöz
         self.player_labels = [
-            tk.Label(root, text=f"{player1}'s turn", font=("Helvetica", 12)),
-            tk.Label(root, text=f"Current Player: {player1}", font=("Helvetica", 10)),
+            tk.Label(root, text=f"{player1} következik", font=("Helvetica", 12)),
+            tk.Label(root, text=f"Jelenlegi játékos: {player1}", font=("Helvetica", 10)),
         ]
 
         #Gombok létrehozása
@@ -45,8 +45,8 @@ class TicTacToe:
                 self.reset_game()
             else:
                 self.current_player = "O" if self.current_player == "X" else "X"
-                self.player_labels[0].config(text=f"{self.player_names[self.current_player]}'s turn")
-                self.player_labels[1].config(text=f"Current Player: {self.player_names[self.current_player]}")
+                self.player_labels[0].config(text=f"{self.player_names[self.current_player]} következik")
+                self.player_labels[1].config(text=f"Jelenlegi játékos: {self.player_names[self.current_player]}")
 
     def check_winner(self):
         # Check rows, columns, and diagonals
@@ -67,8 +67,8 @@ class TicTacToe:
                 self.board[i * 3 + j] = ""
                 self.buttons[i][j].config(text="")
         self.current_player = "X"
-        self.player_labels[0].config(text=f"{self.player_names[self.current_player]}'s turn")
-        self.player_labels[1].config(text=f"Current Player: {self.player_names[self.current_player]}")
+        self.player_labels[0].config(text=f"{self.player_names[self.current_player]} következik")
+        self.player_labels[1].config(text=f"Jelenlegi játékos {self.player_names[self.current_player]}")
 
     def save_winner(self, winner_name):
         try:
